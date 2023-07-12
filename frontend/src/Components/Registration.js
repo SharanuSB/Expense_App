@@ -1,11 +1,10 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { startRegisterUser } from "../Redux/Actions/usersAction"
-import { Link } from "react-router-dom/cjs/react-router-dom.min"
 
 const Registration = (props) => {
     const [username, setUsername] = useState("")
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState("")  
     const [phone, setPhone] = useState("")
     const [occupation, setOccupation] = useState("")
     const [password, setPassword] = useState("")
@@ -66,7 +65,7 @@ const Registration = (props) => {
                         placeholder="Enter your password"
                         onChange={(e) => { setPassword(e.target.value) }} required /><br />
 
-                    <input type="submit" className="btn btn-primary" />   <span className="p-5">Already have a account <Link to="/login"> login here</Link></span>
+                    <input type="submit" className="btn btn-primary" />     
 
 
                 </form>
