@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { startGetSearchedExpenses, startGetUserExpenses, startSortExpenses } from "../Redux/Actions/expensesAction"
 import { startAddNewCategory } from "../Redux/Actions/categoriesAction"
 import AddExpense from "./AddExpense"
@@ -16,10 +16,13 @@ const DashBoard = (props) => {
 
     const [sortBy, setSortBy] = useState("")
 
+    const searchRef = useRef(null)
+
     ////   Getting Users Expenses    --------------
 
     useEffect(() => {
         dispatch(startGetUserExpenses())
+        searchRef.current.focus()
     }, [dispatch])
 
     const expenses = useSelector((state) => {
@@ -31,7 +34,6 @@ const DashBoard = (props) => {
     const handleSearchChange = (e) => {
         setSearch(e.target.value)
         dispatch(startGetSearchedExpenses(e.target.value))
-
     }
 
     ////// Adding new Category -------
@@ -90,6 +92,7 @@ const DashBoard = (props) => {
                                     className="form-control"
                                     placeholder="Search"
                                     value={search}
+                                    ref={searchRef}
                                     onChange={handleSearchChange} />
                             </div>
                         </div>

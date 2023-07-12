@@ -125,7 +125,6 @@ expensesController.search = async (req, res) => {
 expensesController.destroyByCategoryId = async (req, res) => {
     try {
         const id = req.params.id
-        const userId = req.user.id
         const expenses = await Expense.deleteMany({ categoryId: id })
         if (expenses) {
             res.json(expenses)

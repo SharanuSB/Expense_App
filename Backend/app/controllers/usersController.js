@@ -121,26 +121,26 @@ usersController.checkBudgetAvailability = async (req, res) => {
     }
 }
 
-usersController.destroyAccount = async(req, res)=>{
+usersController.destroyAccount = async (req, res) => {
     try {
         const id = req.user.id
         const body = req.body
-        
+
         const userObj = await User.findById(id)
         const compare = await bcrypt.compare(body.password, userObj.password)
 
-        if(compare){
+        if (compare) {
             const deleteUser = User.findByIdAndDelete(id)
-            const categories = Category.deleteMany({userId:id})
-            const expense = Expense.deleteMany({userId:id})
+            const categories = Category.deleteMany({ userId: id })
+            const expense = Expense.deleteMany({ userId: id })
 
             const deleteAll = await Promise.all([deleteUser, categories, expense])
 
             res.json(deleteAll)
 
-        }else{
+        } else {
             res.json({
-                error:"enter a valid password"
+                error: "enter a valid password"
             })
         }
 
