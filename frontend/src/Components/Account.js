@@ -12,7 +12,6 @@ const Account = () => {
 
     useEffect(() => {
         dispatch(startGetUsersAccount())
-        //dispatch(startGetUsersAccount())
         dispatch(startGetUserCategories())
     }, [dispatch])
 

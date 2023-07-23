@@ -1,14 +1,22 @@
 import {
     Chart as chartjs, BarElement, CategoryScale, LinearScale, Tooltip, Legend
 } from "chart.js"
-import { useMemo } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useMemo } from "react"
 import { Bar } from "react-chartjs-2"
+import { startGetCategorySpends } from "../Redux/Actions/expensesAction"
 
 chartjs.register(
     BarElement, LinearScale, CategoryScale, Tooltip, Legend
 )
 
 const CategoryDistChart = (props) => {
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(startGetCategorySpends())
+    },[])
 
     const { categories, expenses } = props
 
