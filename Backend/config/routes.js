@@ -28,7 +28,7 @@ router.delete("/api/expenses/:id", authenticateUser, expensesController.destroy)
 router.delete("/api/expenses/category/:id", authenticateUser, expensesController.destroyByCategoryId)
 router.post("/api/expenses/:categoryId", authenticateUser, expensesController.create)
 router.get("/api/sort/expenses", authenticateUser, expensesController.sortExpenses)
-
+router.get("/api/categorySpents/expenses", authenticateUser, expensesController.categorySpents)
 
 module.exports = router
 

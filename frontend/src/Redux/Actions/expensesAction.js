@@ -237,3 +237,22 @@ export const startSortExpenses = (data) => {
         )()
     }
 }
+
+export const startGetCategorySpends = ()=>{
+    return (dispatch)=>{
+        (
+            async()=>{
+                try {
+                    const result = await axios.get("/api/categorySpents/expenses", {
+                        headers: {
+                            "Auth": localStorage.getItem("token")
+                        }
+                    })
+                    console.log(result)
+                } catch (error) {
+                    alert(error.message)
+                }
+            }
+        )()
+    }
+}

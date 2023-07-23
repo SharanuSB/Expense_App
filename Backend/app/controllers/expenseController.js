@@ -153,6 +153,22 @@ expensesController.sortExpenses = async (req, res) => {
     }
 }
 
+expensesController.categorySpents = async(req, res)=>{
+    try {
+        const expenses = await Expense.aggregate([
+            {
+                $match:{"isDeleted":false}
+            },
+            {
+                $group:{_id:"$categoryId", totalExpense:{$sum:"$amount"}}
+            }
+        ])
+        res.json(expenses)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
 
 
 module.exports = expensesController
