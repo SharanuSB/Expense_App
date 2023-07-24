@@ -1,9 +1,10 @@
-import { ADD_EXPENSE, DELETED_EXPENSE, EDIT_EXPENSE, PERMANENET_REMOVE_ALL, REMOVE_EXPENSE, SET_EXPENSES, UNDO_EXPENSE } from "../Actions/expensesAction"
+import { ADD_EXPENSE, DELETED_EXPENSE, EDIT_EXPENSE, PERMANENET_REMOVE_ALL, REMOVE_EXPENSE, SET_CATEGORIES_SPENDS, SET_EXPENSES, UNDO_EXPENSE } from "../Actions/expensesAction"
 
 const initalExpenseData = {
     data:[],
     errors:{},
-    deletedData:[]
+    deletedData:[],
+    categorySpends :[]
 }
 
 const expensesReducer = (state=initalExpenseData, action)=>{
@@ -34,6 +35,9 @@ const expensesReducer = (state=initalExpenseData, action)=>{
         }
         case PERMANENET_REMOVE_ALL:{
             return {...state, deletedData:[]}
+        }
+        case SET_CATEGORIES_SPENDS:{
+            return {...state, categorySpends:action.payload}
         }
 
         default:{

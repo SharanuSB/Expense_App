@@ -2,7 +2,7 @@ import { ADD_CATEGORY, REMOVE_CATEGORY, SET_CATEGORIES, SET_ERRORS } from "../Ac
 
 const initalCategoriesData = {
     data:[],
-    errors:{}
+    errors:{},
 }
 
 const categoriesReducer = (state=initalCategoriesData, action)=>{

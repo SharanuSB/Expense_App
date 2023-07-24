@@ -8,6 +8,7 @@ export const EDIT_EXPENSE = "EDIT_EXPENSE"
 export const DELETED_EXPENSE = "DELETED_EXPENSE"
 export const UNDO_EXPENSE = "UNDO_EXPENSE"
 export const PERMANENET_REMOVE_ALL = "PERMANENET_REMOVE_ALL"
+export const SET_CATEGORIES_SPENDS = "SET_CATEGORIES_SPENDS"
 
 const setExpenses = (expenses) => {
     return {
@@ -54,6 +55,13 @@ const undoExpense = (expense) => {
 const permanentRemove = () => {
     return {
         type: PERMANENET_REMOVE_ALL
+    }
+}
+
+const setCategorySpends = (data)=>{
+    return {
+        type:SET_CATEGORIES_SPENDS,
+        payload:data
     }
 }
 
@@ -222,8 +230,6 @@ export const startSortExpenses = (data) => {
     const newData = data.split(",")
     const [text, order] = newData
 
-    // console.log(text, order, typeof order)
-
     return (dispatch) => {
         (
             async () => {
@@ -248,7 +254,9 @@ export const startGetCategorySpends = ()=>{
                             "Auth": localStorage.getItem("token")
                         }
                     })
-                    console.log(result)
+                    if(result.data){
+                        dispatch(setCategorySpends(result.data))
+                    }
                 } catch (error) {
                     alert(error.message)
                 }
