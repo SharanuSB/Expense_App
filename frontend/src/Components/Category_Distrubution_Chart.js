@@ -12,25 +12,27 @@ chartjs.register(
 
 const CategoryDistChart = (props) => {
 
+    const { categories, expenses } = props
+
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(startGetCategorySpends())
-    },[])
+    }, [])
 
-    const { categories, expenses } = props
+    const categorySpends = useSelector((state) => {
+        return state.expenses.categorySpends
+    })
 
     let categoriesName = []
 
-        categories.forEach(ele => {
-            categoriesName.push(ele.title)
-        })
-   
- 
+    categories.forEach(ele => {
+        categoriesName.push(ele.title)
+    })
 
-    const findAmount = useMemo(()=>{
+    const findAmount = useMemo(() => {
         let amountUsed = []
-        categories.forEach((category)=>{
+        categories.forEach((category) => {
             let amount = 0
             expenses.forEach(ele => {
                 if (ele.categoryId === category._id) {
@@ -40,7 +42,7 @@ const CategoryDistChart = (props) => {
             amountUsed.push(amount)
         })
         return amountUsed
-    },[categories, expenses])
+    }, [categories, expenses])
 
 
     const data = {
@@ -57,7 +59,6 @@ const CategoryDistChart = (props) => {
     }
 
     const options = {}
-
 
     return (
         <div>

@@ -81,7 +81,7 @@ const DeletedExpenses = (props) => {
                 </thead>
                 <tbody>
                     {
-                        expenses.map(ele => {
+                        expenses&&expenses?.map(ele => {
                             return <tr key={ele._id} style={{ textDecoration: "line-through" }}>
                                 <td>{ele.note}</td>
                                 <td>{ele.amount}</td>

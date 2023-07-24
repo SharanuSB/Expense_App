@@ -25,6 +25,8 @@ const Settings = (props) => {
         return state.expenses.deletedData
     })
 
+    console.log(userDeltedExpenses, "userDeltedExpenses")
+
     ///// Setting Toggle for Budget Model .............
     const [modal, setModal] = useState(false);
 
@@ -181,16 +183,8 @@ const Settings = (props) => {
                             </div>
 
                             <div className="col-md-6 card shadow  p-2 ">
-                                {
-                                    !userDeltedExpenses.length === 0 ?
-                                        <div>
-                                            <DeletedExpenses expenses={userDeltedExpenses} />
-                                        </div> :
-                                        <div>
-                                            <h1>No Recently Deleted Expenses Found</h1>
-                                        </div>
 
-                                }
+                                <DeletedExpenses expenses={userDeltedExpenses} />
 
                             </div>
 
